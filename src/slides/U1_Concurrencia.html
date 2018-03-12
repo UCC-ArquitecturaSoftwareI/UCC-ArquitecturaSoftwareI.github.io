@@ -1,0 +1,126 @@
+<include src="../templates/header.html"
+         titulo="Programación Concurrente"
+         descripcion="Programación Concurrente">
+    Ricardo Martin Marcucci
+</include>
+
+<include src="../templates/slide1.html" titulo="Programación Concurrente">
+</include>
+
+<section>
+    <h2>¿Cómo Funciona?</h2>
+    <p>
+        En un sistema con varios procesadores se puede ejecutar cada tarea en un procesador (ejecución
+        simultanea,paralelismo físico)
+    </p>
+    <img src="images/Concurrencia/paralelismo.png" class="noBorder">
+</section>
+<section>
+    <h2>¿Cómo Funciona?</h2>
+    <p>
+        En un sistema monoprocesador se intercalan las operaciones de las tareas (multiplexado en el tiempo, paralelismo
+        lógico)
+    </p>
+    <img src="images/Concurrencia/paralelismoLogico.png" class="noBorder">
+</section>
+
+<section>
+    <h2>Concurrencia vs. Paralelismo</h2>
+    <ul>
+        <li>La concurrencia es mas general que el paralelismo</li>
+        <li>Las soluciones en P. Concurrente son validas en paralelismo</li>
+        <li>Paralelismo es ejecución simultanea de procesos concurrentes</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Aplicaciones</h2>
+    <ul>
+        <li>Interfaces de usuario reactivas<br>
+            <ul>
+                <li>atención a sucesos asíncronos</li>
+                <li>gestión de ventanas</li>
+            </ul>
+        </li>
+        <li>Servidores<br>
+            <ul>
+                <li>atención a múltiples clientes</li>
+                <li>gestión de protocolos de comunicación</li>
+            </ul>
+        </li>
+        <li>Mejoras de rendimiento</li>
+        <li>Cálculos complejos</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Problema ejemplo</h2>
+    Hacer un programa que:
+    <ul>
+        <li>muestre la hora cada 1s</li>
+        <li>emita un sonido cuando aprietan la tecla enter</li>
+    </ul>
+    Problema:
+    <ul>
+        <li>la tecla se puede pulsar en cualquier momento</li>
+        <li>conflicto de un suceso asíncrono con uno síncrono</li>
+    </ul>
+</section>
+<section>
+    <h2>Solución</h2>
+    <img src="images/Concurrencia/solucion1.png" class="noBorder">
+</section>
+
+<section>
+    <h2>Solución</h2>
+    <pre><code data-trim>/* Hora */
+while(1){
+    sleep(1000);
+    hora = Time.getTime();
+    cout << "La hora es " << hora;
+}
+</code></pre>
+    <pre><code data-trim>/* Sonido */
+while(1){
+    waitKey();
+    beep(440);
+}
+</code></pre>
+</section>
+
+<section>
+    <h2>Propiedades de los programas concurrentes</h2>
+    <ul>
+        <li>Corrección</li>
+        <li>Seguridad</li>
+        <li>Vivacidad</li>
+        <li>Equidad</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Real Time o reactive computing</h2>
+    <ul>
+        <li>Depende de lo que se espera del sistema</li>
+        <li>Que tan rápido responde a los eventos</li>
+    </ul>
+</section>
+<section>
+    <h1>Tiempo Real</h1>
+</section>
+<section>
+    <h2>Criterios de tiempo real</h2>
+    <ul>
+        <li>Hard</li>
+        <li>Firm</li>
+        <li>Soft</li>
+    </ul>
+</section>
+<section>
+    <h2>Tiempo real != Performance</h2>
+</section>
+<section>
+    <h1>Sistemas operativos de tiempo Real</h1>
+</section>
+
+<include src="../templates/footer.html"></include>
