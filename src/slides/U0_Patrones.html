@@ -1,0 +1,166 @@
+<include src="../templates/header.html"
+         titulo="Patrones de Diseño"
+         descripcion="Patrones de Diseño">
+    Ricardo Martin Marcucci
+</include>
+
+<include src="../templates/slide1.html" titulo="Patrones de Diseño">
+</include>
+
+<section>
+    <h2>Caso desde la visión pragmática</h2>
+    <p>
+        Caso típico del Video Club
+    </p>
+    <ul>
+        <li>Se pretende diseñar el software referente a un videoclub.</li>
+        <li>Este software debe contemplar las películas, los clientes y los alquileres que estos últimos realizan.</li>
+        <li>Existen dos tipos de Peliculas, Estrenos y Regulares, y el coste del alquiler varía en función de dichos tipos.</li>
+    </ul>
+</section>
+<section>
+    <h2>Patrones de Diseño</h2>
+    <p>Es una arquitectura reusable que la experiencia ha mostrado que resuelve un problema común en un contexto expecifico </p>
+</section>
+<section>
+    <h2>Patrones de Diseño</h2>
+    <p>Una cosa que los diseñadores expertos no hacen es resolver cada problema desde el principio [...]. Cuando encuentran
+    una buena solución la usan una y otra vez. Esta experiencia es lo que les hace Expertos</p>
+    (Gamma, 1995)
+</section>
+<section>
+    <h2>Clasificación de los patrones</h2>
+    Diferentes niveles de abstracción:
+    <ul>
+        <li>Patrones Arquitectónicos</li>
+        <li>Patrones de Diseño</li>
+        <li>Patrones de Análisis</li>
+        <li>Idioms</li>
+        <li>Antipatrones</li>
+        <li>Patrones de dominios especificos</li>
+    </ul>
+</section>
+<section>
+    <h2>Patrones Grasp</h2>
+    General Responsability Assignment Software Patterns.<br><br>
+    Describen los principios fundamentales para asignar responsabilidades a los objetos.
+</section>
+<section>
+    <h2>Patrón Experto</h2>
+    <ul>
+        <li>Problema: ¿En qué debemos basarnos para asignar responsabilidades a las clases?</li>
+        <li>Solución: asignar la responsabilidad al "experto en la información"<br>
+        El experto en la información es la clase que tiene la información necesaria para cumplir la responsabilidad.</li>
+    </ul>
+</section>
+<section>
+    <h2>Patrón Creador</h2>
+    <ul>
+        <li>Problema: ¿Quién es el responsable de crear una nueva instancia de una clase?</li>
+        <li>Solución: B es responsable de crear una instancia de A si:<br>
+        <ul>
+            <li>B agrega objetos de A</li>
+            <li>B contiene referencias a objetos de A</li>
+            <li>B almacena instancias de A</li>
+            <li>B utiliza estrechamente objetos de A</li>
+            <li>B tiene la información de inicialización que se necesita para crear un objeto de la clase A</li>
+
+        </ul>
+
+        </li>
+    </ul>
+</section>
+<section>
+    <h2>Patrón "Bajo Acoplamiento"</h2>
+    Problema:¿Cómo mantener un bajo acoplamiento para lograr, entre otras cosas, alta reutilización?<br><br>
+    Nota: el acoplamiento mide el grado en que una clase está conectada a otra, tiene conocimiento de otra o,
+    de alguna manera, depende de otra.
+
+</section>
+<section>
+    <h2>Patrón "Bajo Acoplamiento"</h2>
+    Situaciones de acoplamiento:
+    <ul>
+        <li>X tiene un miembro o declara una variable de clase Y</li>
+        <li>X tiene un método que toma como parámetro un objeto de la clase Y</li>
+        <li>X es un descendiente de Y</li>
+    </ul>
+</section>
+<section>
+    <h2>Patrón "Bajo Acoplamiento"</h2>
+    Desventajas del acoplamiento:
+    <ul>
+        <li>Los cambios en una clase pueden implicar
+            cambios en las clases relacionadas.</li>
+        <li>Dificultad de comprensión.</li>
+        <li> Dificultad de reutilización</li>
+        <li>¿Pérdida de rendimiento?</li>
+
+    </ul>
+</section>
+<section>
+    <h2>Patrón "Bajo Acoplamiento"</h2>
+    Solución: asignar la responsabilidad de
+    manera que el acoplamiento permanezca
+    bajo.
+
+</section>
+<section>
+    <h2>El patrón “Alta cohesión”</h2>
+    Problema: ¿cómo mantener la complejidad de
+    una clase en niveles manejables?<br><br>
+
+    Nota: la cohesión mide el grado en que están
+    relacionadas las responsabilidades de una
+    clase.
+
+</section>
+<section>
+    <h2>El patrón “Alta cohesión”</h2>
+    Desventajas de una clase con baja cohesión:
+    <ul>
+        <li>Difícil de comprender</li>
+        <li>Difícil de reutilizar</li>
+        <li>Difícil de mantener</li>
+        <li>Delicada, se afecta mucho por los cambios</li>
+    </ul>
+
+</section>
+<section>
+    <h2>El patrón “Alta cohesión”</h2>
+    Solución: asignar responsabilidades de
+    manera que la cohesión se mantenga alta.
+
+</section>
+<section>
+    <h2>El patrón “Controlador”</h2>
+    <ul>
+        <li>Problema: ¿quién debería ser responsable
+            de manejar un evento del sistema?</li>
+        <li>Un evento del sistema es un evento
+            generado por un actor externo.</li>
+
+    </ul>
+</section>
+<section>
+    <h2>El patrón “Controlador”</h2>
+    Solución: asignar la responsabilidad al
+    “controlador”, que será una clase que:
+    <ul>
+        <li>Representa al sistema completo, a la
+            organización... (controlador “fachada”)</li>
+        <li>Representa una parte activa del mundo real que
+            desencadena de tal evento (controlador de rol)</li>
+        <li>Representa un manejador artificial de eventos
+            (controlador de CdU)</li>
+    </ul>
+
+
+</section>
+
+<section>
+    <h2>Patrones GOF</h2>
+    <img src="images/GOF.png" alt="">
+</section>
+
+<include src="../templates/footer.html"></include>
