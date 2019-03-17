@@ -53,12 +53,154 @@
         </small>
     </p>
 </section>
-
 <section>
-    <h2>Mecanismos de sincronización de bajo nivel</h2>
+    Las hebras de un programa pueden ser <b>Independientes</b>, la ejecución de una no afecta lo que hagan las demás.
+    <br>
+    ...es mas común que varias hebras cooperen para realizar una función en común.
+    <br>
+    un mecanismo de cooperación son las variables compartidas
+</section>
+<section>
+    <h3>Ejemplo</h3>
+    <b>Problema de los Jardines:</b> hay dos puertas giratorias en un jardín, una para entrar y otra para salir.
+    Un hilo procesa cada puerta y tienen una variable en común.
+</section>
+<section>
+    <h3>Problema</h3>
+    Si ambos hilos utilizan la misma variable al mismo tiempo surgen problemas<br>
+    <br>
+    Esa sección de código donde ambos procesos utilizan la misma variable, se llama Sección Crítica<br>
+    <br>
+    Cuando el resultado depende del orden de entrada de las operaciones de c/hilo se llama <b>Condición de Carrera</b>
+</section>
+<section>
+    <img src="images/Concurrencia/race1.png" alt="">
+</section>
+<section>
+    <img src="images/Concurrencia/race2.png" alt="">
+</section>
+<section>
+    <h3>Condición de carrera</h3>
+    El resultado puede ser 1 o 2<br>
     <ul>
-        <li>Semáforo</li>
-        <li>mutex</li>
+        <li>cada ejecución es distinta (comportamiento indeterminado)</li>
+        <li>imposible de hacer ensayos o test (cada vez un resultado diferente)</li>
+    </ul>
+</section>
+<section>
+    <h3>Resumen region crítica y exclusión mutua</h3>
+    <ul>
+        <li>Los segmentos de código en que se accede a variables compartidas se llaman regiones críticas</li>
+        <li>Para evitar condiciones de carrera es preciso asegurar la exclusión mutua entre hilos en las regiones
+            criticas
+        </li>
+        <li>Cuando un hilo está en una región crítica, ningún otro hilo puedo acceder a los mismos datos</li>
+        <li>De esta forma se consiguen que las operaciones con variables compartidas sean atómicas.</li>
+    </ul>
+</section>
+<section>
+    <h2>Exclusión Mutua (Mutex)</h2>
+    Es la forma de asegurar la exclusión mutua.
+    <ul>
+        <li>Puede estar en dos estados:
+            <ul>
+                <li>Bloqueado (locked)</li>
+                <li>Desbloqueado (unlocked)</li>
+            </ul>
+        </li>
+        <li>dos operaciones atómicas:
+            <ul>
+                <li>lock</li>
+                <li>unlock</li>
+            </ul>
+        </li>
+        <li>el hilo que quiere bloquear, debe esperar a que esté desbloqueado<br>
+            al desbloquearse, el mutex avisa que se puede continuar.
+        </li>
+    </ul>
+</section>
+<section>
+    <img src="images/Concurrencia/mutex.png" alt="">
+</section>
+<section>
+    <h2>Fiabilidad</h2>
+    <ul>
+        <li>
+            Corrección<br>
+            <span style="font-size: 0.7em;">los resultados son correctos</span>
+        </li>
+        <li>
+            Seguridad<br>
+            <span style="font-size: 0.7em;">nunca suceden cosas malas</span>
+        </li>
+        <li>
+            Vivacidad<br>
+            <span style="font-size: 0.7em;">en algún momento ocurrirá algo bueno</span>
+        </li>
+        <li>
+            Equidad<br>
+            <span style="font-size: 0.7em;">ningún hilo se ve perjudicado por el progreso de otro</span>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Interbloqueos (deadlocks)</h3>
+    <ul>
+        <li>Situación en la que varios hilos están suspendidos esperando unos de otros y ninguno puedo avanzar</li>
+        <li>Se puede dar cuando se usan recursos de forma exclusiva y se asignan a distintos hilos</li>
+        <li>Se dice que hay espera circular.</li>
+
+    </ul>
+
+</section>
+<section>
+    <img src="images/Concurrencia/deadlock.png" alt="">
+</section>
+<section>
+    <h3>Condiciones de Coffman</h3>
+    <h5>Condiciones necesarias</h5>
+    <ul>
+        <li><b>Exclusión mutua</b> en el uso de recursos</li>
+        <li><b>Tener y esperar:</b> un hilo tiene recursos y los mantiene mientras espera otro</li>
+        <li><b>Sin expulsión:</b> no se puede quitar un recurso a un hilo</li>
+        <li><b>Espera circular:</b> hay un conjunto de hebras con recursos, esperando por otros recursos, formando una cadena circular</li>
+    </ul>
+</section>
+<section>
+    <h3>Prevenir interbloqueos</h3>
+    <ul>
+        <li>
+            Los interbloqueos no se pueden detectar mediante pruebas<br>
+            sólo ocurrren de vez en cuando<br>
+            un programa puede pasar las pruebas y fallar mas tarde
+        </li>
+        <li>
+            Para prevenir interbloqueos, hay que evitar que se dé alguna de las condiciones necesarias<br>
+            requiere disciplina por parte del programador
+            <br>
+            ponerse de acuerdo en seguir algunas reglas.
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Bloqueos vivos e inanición</h3>
+    Se dan cuando se trata de invalidar la condición de "Tener y esperar"
+    <ul>
+        <li>
+            Uno de los procesos no conseguirá nunca los recursos: <b>inanición (starvation)</b>
+        </li>
+        <li>
+            Ninguno conseguirá los recursos: <b>bloqueo "vivo" (livelock)</b>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Resumen</h3>
+    <ul>
+        <li>El uso de recursos compartidos puede causar problemas difíciles de detectar</li>
+        <li>Interbloqueo (deadlock) - <span style="font-size: 0.7em;">problema de seguridad</span> </li>
+        <li>Bloqueo vivo (livelock) - <span style="font-size: 0.7em;">problema de vivacidad</span> </li>
+        <li>Inanición (starvation) - <span style="font-size: 0.7em;">problema de equidad</span> </li>
     </ul>
 </section>
 </div>
