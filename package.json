@@ -1,0 +1,24 @@
+{
+  "name": "filminas",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/UCC-LabCompu2/filminas.svg?branch=master)](https://travis-ci.org/UCC-LabCompu2/filminas)",
+  "main": "index.js",
+  "scripts": {
+    "build": "reveal-md slides --static public",
+    "deploy": "npm run build && gh-pages -d public -b master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCC-ArquitecturaSoftwareI/UCC-ArquitecturaSoftwareI.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UCC-ArquitecturaSoftwareI/UCC-ArquitecturaSoftwareI.github.io/issues"
+  },
+  "homepage": "https://github.com/UCC-ArquitecturaSoftwareI/UCC-ArquitecturaSoftwareI.github.io#readme",
+  "dependencies": {
+    "gh-pages": "^2.2.0",
+    "reveal-md": "^3.4.7"
+  }
+}
