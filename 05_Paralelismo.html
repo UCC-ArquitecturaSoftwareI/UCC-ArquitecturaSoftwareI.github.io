@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Paralelismo y Concurrencia</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+# Concurrencia
+
+</script></section><section  data-markdown><script type="text/template">
+## Concurrencia
+
+Las hebras de un programa pueden ser Independientes, la ejecución de una no afecta lo que hagan las demás.
+...es mas común que varias hebras cooperen para realizar una función en común.
+un mecanismo de cooperación son las variables compartidas 
+
+</script></section><section  data-markdown><script type="text/template">
+## Ejemplo
+
+ Problema de los Jardines: hay dos puertas giratorias en un jardín, una para entrar y otra para salir. Un hilo procesa cada puerta y tienen una variable en común. 
+
+
+</script></section><section  data-markdown><script type="text/template">
+## Problema
+Si ambos hilos utilizan la misma variable al mismo tiempo surgen problemas
+
+Esa sección de código donde ambos procesos utilizan la misma variable, se llama Sección Crítica
+
+Cuando el resultado depende del orden de entrada de las operaciones de c/hilo se llama Condición de Carrera
+
+</script></section><section  data-markdown><script type="text/template">
+## Problema
+![](images/Concurrencia/race1.png)
+
+</script></section><section  data-markdown><script type="text/template">
+## Problema
+
+![](images/Concurrencia/race2.png)
+
+</script></section><section  data-markdown><script type="text/template">
+## Condición de carrera
+ El resultado puede ser 1 o 2
+* Cada ejecución es distinta (comportamiento indeterminado)
+* Imposible de hacer ensayos o test (cada vez un resultado diferente)
+
+</script></section><section  data-markdown><script type="text/template">
+## Region crítica y exclusión mutua
+
+* Los segmentos de código en que se accede a variables compartidas se llaman regiones críticas
+* Para evitar condiciones de carrera es preciso asegurar la exclusión mutua entre hilos en las regiones criticas 
+* Cuando un hilo está en una región crítica, ningún otro hilo puedo acceder a los mismos datos
+* De esta forma se consiguen que las operaciones con variables compartidas sean atómicas.
+
+</script></section><section  data-markdown><script type="text/template">
+## Exclusión Mutua (Mutex)
+
+ Es la forma de asegurar la exclusión mutua. 
+
+* Puede estar en dos estados: 
+   * Bloqueado (locked)
+   * Desbloqueado (unlocked)
+* Dos operaciones atómicas: 
+  * lock
+  * unlock
+* el hilo que quiere bloquear, debe esperar a que esté desbloqueado
+al desbloquearse, el mutex avisa que se puede continuar. 
+
+</script></section><section  data-markdown><script type="text/template">
+## Exclusión Mutua (Mutex)
+
+![](images/Concurrencia/mutex.png)
+
+</script></section><section  data-markdown><script type="text/template">
+## Interbloqueos (deadlocks)
+
+* Situación en la que varios hilos están suspendidos esperando unos de otros y ninguno puedo avanzar
+* Se puede dar cuando se usan recursos de forma exclusiva y se asignan a distintos hilos
+* Se dice que hay espera circular.
+  
+</script></section><section  data-markdown><script type="text/template">
+## Interbloqueos (deadlocks)
+
+![](images/Concurrencia/deadlock.png)
+
+</script></section><section  data-markdown><script type="text/template">
+## Prevenir interbloqueos
+
+* Los interbloqueos no se pueden detectar mediante pruebas sólo ocurrren de vez en cuando un programa puede pasar las pruebas y fallar mas tarde 
+* Para prevenir interbloqueos, hay que evitar que se dé alguna de las condiciones necesarias
+requiere disciplina por parte del programador
+ponerse de acuerdo en seguir algunas reglas. 
+
+</script></section><section  data-markdown><script type="text/template">
+## Bloqueos vivos e inanición
+Se dan cuando se trata de invalidar la condición de "Tener y esperar" 
+* Uno de los procesos no conseguirá nunca los recursos: inanición (starvation)
+* Ninguno conseguirá los recursos: bloqueo "vivo" (livelock)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Resumen
+
+* El uso de recursos compartidos puede causar problemas difíciles de detectar
+* Interbloqueo (deadlock) - <sup><sub>problema de seguridad</sub></sup>
+* Bloqueo vivo (livelock) - <sup><sub>problema de vivacidad</sub></sup>
+* Inanición (starvation) - <sup><sub>problema de equidad</sub></sup></script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/slides/js/pruebas.js"></script>
+    <script src="./_assets/slides/js/init.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
