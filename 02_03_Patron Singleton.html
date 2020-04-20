@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Patron Singleton</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/league.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# Patrones de diseño
+
+## Patron Singleton
+
+<small>
+Created by <br/>
+
+[rmarku]("https://t.me/rmarku") <i class="fab fa-telegram"></i> 
+
+</small>
+</script></section><section  data-markdown><script type="text/template">
+### Patron Singleton
+
+Este patron **Creacional** permite asegurarse que una clase tendrá solamente
+una instancia, mientras provee una forma de aceder desde cualquier lado a esta
+instancia.
+
+</script></section><section  data-markdown><script type="text/template">
+### Patron Singleton
+
+#### Motivación
+
+Algunas veces es importante que una clase tenga solo una instancia. Cuando el recurso que ocupa
+es uno solo. Por ejemplo la conexión a la Base de datos debe ser única, un archivo de logs debe
+ser abierto solo una vez, el acceso a un conversor A/D debe ser uno solo, etc.
+
+</script></section><section  data-markdown><script type="text/template">
+### Patron Singleton
+
+```cpp
+class Log{
+    Log(){
+        ofstream of("log.txt");
+    }
+}
+...
+Log lo();
+ll.log("error");
+...
+
+Log lo();               // Error, archivo en uso.
+ll.log("conectando");
+
+```
+</script></section><section  data-markdown><script type="text/template">
+### Patron Singleton
+
+```cpp
+class Log{
+    Log(){
+        ofstream of("log.txt");
+    }
+}
+...
+int main(){
+    Log lo();
+    MiClase mc(lo);
+    ll.log("error");
+}
+...
+lo.log("conectando");
+
+```
+</script></section><section  data-markdown><script type="text/template">
+#### Aplicabilidad:
+
+Se debe usar Singleton cuando:
+
+* Debe haber exactamente una instancia de una clase, y debe ser accesible a clientes desde cualquier lugar.
+
+</script></section><section  data-markdown><script type="text/template">
+#### Patron Singleton
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Creacionales/singleton.txt)
+
+</script></section><section  data-markdown><script type="text/template">
+### Patron Singleton
+
+#### Participantes
+
+Se compone de dos elementos principales
+
+* **SINGLETON**: 
+  * Define una instancia de la clase y deja a los clientes acceder a esta única instancia.
+  * Puede ser responsable de crear su propia instancia.
+
+</script></section><section  data-markdown><script type="text/template">
+
+#### DEMO
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Creacionales/singleton_example.txt)
+
+</script></section><section  data-markdown><script type="text/template">
+# DEMO
+</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/slides/js/pruebas.js"></script>
+    <script src="./_assets/slides/js/init.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Patron builder</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/league.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# Patrones de diseño
+
+## Patron Builder
+
+<small>
+Created by <br/>
+
+[rmarku]("https://t.me/rmarku") <i class="fab fa-telegram"></i> 
+
+</small>
+</script></section><section  data-markdown><script type="text/template">
+### Patron Builder
+
+Este patron **Creacional** permite construir objetos complejos paso a paso. Permite crear diferentes
+representaciones del objeto usando el mismo código para construirlo.
+
+</script></section><section  data-markdown><script type="text/template">
+### Patron Builder
+
+#### Motivación
+
+Cuando un objeto es muy complejo, requiere muchos datos para inicializarse o  esta construido por
+muchos otros objetos, surgen problemas al tratar de instanciarlos.
+
+```cpp
+class Casa{
+    Casa(bool Puerta, int ventanas, bool garage, bool pileta, int arboles,
+         int arbustos, int pisos, int habitaciones, int banios, bool comedor,
+         bool living, techo tipo_techo, int escalera);
+}
+
+...
+Casa *miCasa = new Casa( true, 1, false, false, 1, 0, 2, 2, 2, 0, 0 ,PLANO, 1);
+
+```
+</script></section><section  data-markdown><script type="text/template">
+### Patron Builder
+```cpp
+class Casa{
+    Casa();
+    addPuerta(Puerta p);
+    addVentana(Ventana v);
+    addGarage(Garage g);
+    addPileta(Pileta p);
+    add.....
+}
+...
+Casa *miCasa = new Casa();
+miCasa.addPuerta(new Puerta());
+miCasa.addVentana(new Ventana());
+miCasa.addGarage(new Garage());
+miCasa.addPileta(new Pileta());
+miCasa.add......
+
+```
+</script></section><section  data-markdown><script type="text/template">
+### Patron Builder
+
+#### Intención:
+
+Separar la construcción de objetos complejos de su representación.
+
+![Casa](images/PatronesDeDisenio/CasaBuilder.png)
+
+</script></section><section  data-markdown><script type="text/template">
+#### Aplicabilidad:
+
+Se debe usar Builder cuando:
+
+* El algoritmo para crear un objeto complejo debe ser independiente del objeto y de como se construye.
+* El proceso de construcción debe permitir diferentes representaciones del objeto.
+
+</script></section><section  data-markdown><script type="text/template">
+#### Patron Builder
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Creacionales/builder.txt)
+
+</script></section><section  data-markdown><script type="text/template">
+### Patron Builder
+
+#### Participantes
+
+Se compone de dos elementos principales
+
+* **DIRECTOR**: Quien se encarga de ejecutar cada proceso de instanciamiento.
+* **BUILDER**: La interfaz abstracta que que crea partes del producto
+* **CONCRETE BUILDER**: Implementa la interfaz Builder y save construir el producto concreto
+
+</script></section><section  data-markdown><script type="text/template">
+
+#### DEMO
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Creacionales/builder_example.txt)
+
+
+</script></section><section  data-markdown><script type="text/template">
+# DEMO
+</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/slides/js/pruebas.js"></script>
+    <script src="./_assets/slides/js/init.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

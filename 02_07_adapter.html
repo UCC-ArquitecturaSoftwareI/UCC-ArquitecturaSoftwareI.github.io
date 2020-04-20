@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Filmina - Patron Adapter</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/league.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# Patrones de diseño
+
+## Adapter
+
+<small>
+Created by <br/>
+
+[rmarku]("https://t.me/rmarku") <i class="fab fa-telegram"></i> 
+
+</small>
+</script></section><section  data-markdown><script type="text/template">
+### Adapter
+
+Este patron **Estructural** que permite que dos clases con interfaces incompatibles colaboren.
+
+</script></section><section  data-markdown><script type="text/template">
+### Adapter
+
+#### Motivación
+
+* Reutilizar clases con interfaces incompatibles
+
+</script></section><section  data-markdown><script type="text/template">
+#### Aplicabilidad:
+
+Se debe usar Adapter cuando:
+
+* Se debe utilizar una clase existente y la interfaz no es compatible
+* Se desea crear clases reusables que cooperan con clases no relacionadas
+* Se desea utilizar diversas subclases existentes pero resulta im práctico adaptar sus interfaces mediante
+ la extensión de todas ellas (utilizar un objeto adaptador de la clase padre)
+</script></section><section  data-markdown><script type="text/template">
+#### Adapter
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Estructurales/adapter.txt)
+
+</script></section><section  data-markdown><script type="text/template">
+### Adapter
+
+#### Participantes
+
+* **Adapter**: Interface con la que va a trabajar el cliente
+* **Concrete Adapter**: Una clase que presenta la interface del Adapter, pero puede comunicarse con el Adaptee
+* **Cliente**: Contiene la lógica de negocio del programa
+* **Adaptee**: Es una clase util que el cliente quiere utilizar pero no puede hacerlo directamente.
+</script></section><section  data-markdown><script type="text/template">
+
+#### DEMO
+
+#### Estructura
+
+![img](http://www.plantuml.com/plantuml/proxy?fmt=svg&src=https://raw.githubusercontent.com/UCC-ArquitecturaSoftwareI/DesignPatternDiagrams/master/Estructurales/adapter_example.txt)
+
+</script></section><section  data-markdown><script type="text/template">
+# DEMO
+</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/slides/js/pruebas.js"></script>
+    <script src="./_assets/slides/js/init.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Patrones de diseño</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/league.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="./_assets/slides/css/filminas.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+# Patrones de diseño
+
+<small>
+Created by <br/>
+
+[rmarku]("https://t.me/rmarku") <i class="fab fa-telegram"></i> 
+
+</small>
+</script></section><section  data-markdown><script type="text/template">
+
+### Patrones de diseño
+
+* Es una solución general reusable a un problema que ocurre comúnmente
+en un contexto dado en el diseño de software.
+* Es la descripción de un problema junto con la solución a dicho problema.
+* Definen una solución a un problema recurrente
+
+</script></section><section  data-markdown><script type="text/template">
+
+### Patrones de diseño
+
+Christopher Alexander
+
+_"Each pattern describes a problem which occurs over and over again 
+in our environment, and then describes the core of the solution to
+that problem, in such a way that you can use this solution a million
+times over, without ever doing it the same way twice"_
+
+</script></section><section  data-markdown><script type="text/template">
+
+### Patrones de diseño
+
+Para describir un patron de diseño se suele utilizar las siguientes características:
+
+* Nombre del Patrón
+* El problema que intenta solucionar
+* La solución
+* Las consecuencias
+
+</script></section><section  data-markdown><script type="text/template">
+
+### Patrones de diseño
+
+Clasificación de los patrones
+
+Los patrones se pueden clasificar según varios criterios:
+
+* Según su Propósito
+* Según su Scope
+
+</script></section><section  data-markdown><script type="text/template">
+<table style="text-align: center" >
+    <tr>
+        <td></td>
+        <td></td>
+        <td colspan="3"  style="border-bottom: solid 1px #ddd;text-align: center"><h1>Purpose</h1></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="border-right: solid 1px #ddd;"></td>
+        <td style="border-bottom: solid 1px #ddd;border-right: solid 1px #ddd;"><h2>Creational</h2></td>
+        <td style="border-bottom: solid 1px #ddd;border-right: solid 1px #ddd;"><h2>Structural</h2></td>
+        <td style="border-bottom: solid 1px #ddd;"><h2>Behavioral</h2></td>
+    </tr>
+    <tr>
+        <td rowspan="2"><h1>Scope</h1></td>
+        <td style="border-bottom: solid 1px #ddd;border-right: solid 1px #ddd;"><h2>Class</h2></td>
+        <td style="border-bottom: solid 1px #ddd;border-right: solid 1px #ddd;">Factory Method</td>
+        <td style="border-bottom: solid 1px #ddd;border-right: solid 1px #ddd;">Adapter</td>
+        <td style="border-bottom: solid 1px #ddd;">Interpreter<br>Template Method</td>
+    </tr>
+    <tr style="border-bottom: solid 1px #ddd;">
+        <td style="border-right: solid 1px #ddd;"><h2>Object</h2></td>
+        <td style="border-right: solid 1px #ddd;">
+            Abstract Factory<br>
+            Builder<br>
+            Prototype<br>
+            Singleton
+        </td>
+        <td style="border-right: solid 1px #ddd;">
+            Adapter<br>
+            Bridge<br>
+            Composite<br>
+            Decorator<br>
+            Facade<br>
+            Flyweight<br>
+            Proxy
+        </td>
+        <td>
+            Chain of Responsibility<br>
+            Command<br>
+            Iterator<br>
+            Mediator<br>
+            Memento<br>
+            Observer<br>
+            State<br>
+            Strategy<br>
+            Visitor
+        </td>
+    </tr>
+</table>
+
+</script></section></div>
+    </div>
+
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"progress":true,"slideNumber":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/slides/js/pruebas.js"></script>
+    <script src="./_assets/slides/js/init.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
